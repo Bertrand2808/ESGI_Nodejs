@@ -1,10 +1,10 @@
 /* Premiere fonction */
 
-const Somme = (a, b) => a + b;
-console.log("Somme de deux nombres :", Somme(2, 3));
+const sum = (a, b) => a + b;
+console.log("Somme de deux nombres :", sum(2, 3));
 
 /* Deuxieme fonction */
-const plusGrandNombre = (tab) => {
+const largestNum = (tab) => {
   let max = 0;
   for (let i = 0; i < tab.length; i++) {
     if (tab[i] > max) {
@@ -13,12 +13,20 @@ const plusGrandNombre = (tab) => {
   }
   return max;
 };
-console.log("Retour du plus grand nombre d'un tableau : ", plusGrandNombre([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
+
+/*
+Manière plus rapide :
+const largestNum = (tab) => {
+  return Math.max(...tab);
+};
+*/
+console.log("Retour du plus grand nombre d'un tableau : ", largestNum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
 
 /* Troisieme fonction */
 const suppVoyelle = (str) => {
   let voyelle = ["a", "e", "i", "o", "u", "y"];
-  let newStr = "";
+  let newStr = ""
+  // Regex pour les voyelles : maRegex = /[aeiouy]/i;
   for (let i = 0; i < str.length; i++) {
     if (!voyelle.includes(str[i])) {
       newStr += str[i];
@@ -29,13 +37,20 @@ const suppVoyelle = (str) => {
 console.log(suppVoyelle("Bonjour"));
 
 /* Quatrieme fonction */
-const triAlphabetAscii = (chaine) => {
-  let newChaine= chaine.split("").sort((function(a,b) {
+const sortAlphabetAscii = (str) => {
+  let newStr= str.split("").sort((function(a,b) {
     return a.localeCompare(b);
   })).join("");
-  return newChaine;
+  return newStr;
 };
-console.log("Tri par ordre alphabétique d'un tableau : ", triAlphabetAscii("B21onzqejOurAa"));
+console.log("Tri par ordre alphabétique d'un tableau : ", sortAlphabetAscii("B21onzqejOurAa"));
+
+const sortAlphabetAscii2 = () => {
+  let tab = ["a", "z", "q", "Z", "1", "O", "b", "2", "j", "e", "B", "J", "U", "r"];
+  console.log("Tri par ordre alphabétique d'un tableau : ", tab.sort((a, b) => a.localeCompare(b)));
+
+};
+sortAlphabetAscii2();
 
 /* Cinquieme fonction */
 let chiffre = ["", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf"];

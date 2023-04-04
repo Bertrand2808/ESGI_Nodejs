@@ -64,3 +64,31 @@ troisiemeMois(mois);
 
 /* Huitième exercice */
 
+const minEtMax = () => {
+  let tabAleatoire = [];
+  for(let i = 0; i < 10; i++){
+    tabAleatoire.push(Math.floor(Math.random() * 100));
+  }
+  let min = Math.min(...tabAleatoire);
+  let max = Math.max(...tabAleatoire);
+  console.log("Le tableau aléatoire est : ", tabAleatoire);
+  console.log("Le minimum du tableau est : " + min);
+  console.log("Le maximum du tableau est : " + max);
+};
+
+minEtMax();
+
+/* Neuvième exercice */
+
+let sentenceTab = ["Je vais rentrer ", "Je suis en cours aujourd'hui", "Une pomme", "phrase"];
+const phraseLaPlusLongue = (sentenceTab) => {
+  let newPhrase = "";
+  sentenceTab.forEach((element) => {
+    if(element.length > newPhrase.length){
+      newPhrase = element;
+    }
+  });
+  console.log("La phrase la plus longue est : " + newPhrase);
+};
+
+phraseLaPlusLongue(sentenceTab);
