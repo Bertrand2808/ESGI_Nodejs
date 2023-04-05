@@ -1,0 +1,18 @@
+Commencer un projet Node
+
+npm init
+-> Cela va initier npm + créer un fichier package.json
+
+
+Installer un module :
+npm install <package>
+npm i <package>
+
+Lancer un fichier js :
+npm run dev
+
+<-------------------- Export --------------------->
+Export un fichier :
+
+1 seul export defaut par fichier
+x export nommé par fichier
