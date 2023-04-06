@@ -1,10 +1,35 @@
-import http from 'http';
+import express from 'express'
+import bodyParser from 'body-parser'
+
+import  productRouter  from './routes/product.js'
+
+// On crée une application express
+const app = express()
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+app.use('/product', productRouter)
+
+// CRUD = Create, Read, Update, Delete
 
 
-import routes from './routes.js';
+// On peut avoir plusieurs middleware
+app.use((req, res, next) => {
+  console.log('Je suis dans le middleware')
+  // On appelle le prochain middleware
+  next()
+})
 
-const webServer = http.createServer(routes.handler);
+app.use((req, res, next) => {
+  res.status(200)
+  next()
+})
 
-webServer.listen(3000, () => {
-  console.log('Serveur en écoute sur le port 3000');
-});
+app.use((req, res, next) => {
+  res.status(200)
+  res.send('Hello ESGI')
+  next()
+})
+
+app.listen(3000)
