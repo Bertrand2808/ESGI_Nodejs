@@ -1,31 +1,34 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
+const {model, Schema} = mongoose
+
 
 /*
     On crée un schéma de données pour la base de données
     On définit les champs et leur type pour éviter les erreurs
 */
-const schema = new Schema(
+const transferSchema = new Schema(
   {
-    Player: {
-      type: String,
-      required: true
-    },
-    Year: {
-      type: Number,
-      required: true
-    },
-    Fee: {
-      type: String,
-    },
+      Country:  {type: String, required: true },
+      Population: {type: Number, required: true },
+      FirearmsPer100Persons : Number,
+      EstimateInCivilianPossession : Number,
+      ComputationMethod : Number,
+      RegisteredFirearms : Number,
+      UnregisteredFirearms : Number,
+      GunDeathRate : Number,
+      DeathsByFirearm : Number,
+      SuicideByFirearm : Number,
+      UnintentionalDeaths : String,
+      PoliceKillings : Number,
+      RatePoliceKillingPer10M : Number,
+      Data_Year_Police_Killing : Number,
+      Notes : String
 
-    FromClub: {
-      type: String,
-      required: true
-    },
   }
 )
 
-export const TopTransfer = mongoose.model('TopTransfer', schema)
+const toptransfer = model('toptransfer', transferSchema)
 
 
-export default TopTransfer
+export default toptransfer
+

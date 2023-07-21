@@ -1,9 +1,10 @@
 import express from "express"
 import bodyParser from "body-parser"
 import mongoose from "mongoose"
+import connectDB from "./BDD/app.js"
 
 import productRouter from "./routes/product.js"
-import transferRouter from "./routes/transfer.js"
+import  transferRouter from "./routes/transfer.js"
 
 import swaggerJSDoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express"
@@ -52,31 +53,24 @@ async function main() {
 
   app.use("/product", productRouter)
   app.use("/transfer", transferRouter)
+  app.use(express.json())
 
-
-  // CRUD = Create, Read, Update, Delete
-
-  app.use((req, res, next) => {
-    res.status(200)
-    res.send("Hello ESGI")
-    next()
+  app.post('/api-stuff', (req, res) => {
+    console.log(req.body)
+    res.status(201).json({ message: 'Post created successfully' }
+    )
   })
 
   // On se connecte à la base de données
-  const connection = await mongoose.connect("mongodb://127.0.0.1:27017/Football", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+  connectDB("mongodb://127.0.0.1:27017",(err) => {
+    if (err) {
+      console.log("Erreur de connexion a la base de données")
+      process.exit(-1)
+    }
+    app.listen(3000, () => {
+      console.log("Serveur démarré sur le port 3000")
     })
-    // On récupère la connexion et on retourne une promise
-    .then((result) => {
-      console.log("Connected to MongoDB")
-      // ecoute du server sur le port 3000
-      app.listen(3000, () => {
-        console.log("Ecoute de l'API sur le port 3000!")
-      })
-    })
-    // On récupère l'erreur
-    .catch((err) => console.error("Could not connect to MongoDB", err))
+  })
 }
 
 main()
